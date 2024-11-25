@@ -28,6 +28,12 @@ namespace DataFiltering.ItemManager.Controls
                 propertyType: typeof(string),
                 ownerType: typeof(ItemListView),
                 typeMetadata: new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty SelectedItemProperty =
+            DependencyProperty.Register(
+                name: nameof(SelectedItem),
+                propertyType: typeof(object),
+                ownerType: typeof(ItemListView),
+                typeMetadata: new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public IEnumerable ItemsSource
         {
@@ -53,6 +59,11 @@ namespace DataFiltering.ItemManager.Controls
                 if (SetProperty(ref _filterText, value))
                     ItemsCollectionView?.Refresh();
             }
+        }
+        public object? SelectedItem
+        {
+            get => GetValue(SelectedItemProperty);
+            set => SetValue(SelectedItemProperty, value);
         }
 
         private bool FilterLogic(object obj)

@@ -8,6 +8,7 @@ namespace DataFiltering.ItemManager.ViewModels
     public class ItemManagerViewModel : BindableBase
     {
         private ObservableCollection<IGroceryItem> _groceries = new ObservableCollection<IGroceryItem>();
+        private IGroceryItem? _selectedGroceryItem;
 
         public DelegateCommand GetGroceriesCommand { get; private set; }
 
@@ -23,16 +24,10 @@ namespace DataFiltering.ItemManager.ViewModels
             GetGroceriesCommand = new DelegateCommand(GetGroceries);
         }
 
-        private void GetGroceries()
+        public IGroceryItem? SelectedGroceryItem
         {
-            var x = new ObservableCollection<IGroceryItem>()
-            {
-                 new Beverage("Cola", 1.50m, 200, 0.33f, false),
-                 new Beverage("Whiskey", 25.00m, 30, 0.7f, true),
-                 new Beverage("Energy Drink", 2.00m, 150, 0.25f, false)
-            };
-            Groceries.AddRange(x);
-
+            get => _selectedGroceryItem;
+            set => SetProperty(ref _selectedGroceryItem, value);
         }
 
         public ObservableCollection<IGroceryItem> Groceries
@@ -43,6 +38,18 @@ namespace DataFiltering.ItemManager.ViewModels
         public string ItemManagementRegion
         {
             get => UIRegions.ItemManagementRegion;
+        }
+
+        private void GetGroceries()
+        {
+            var x = new ObservableCollection<IGroceryItem>()
+            {
+                 new Beverage("Cola", 1.50m, 200, 0.33f, false),
+                 new Beverage("Whiskey", 25.00m, 30, 0.7f, true),
+                 new Beverage("Energy Drink", 2.00m, 150, 0.25f, false)
+            };
+            Groceries.AddRange(x);
+
         }
     }
 }

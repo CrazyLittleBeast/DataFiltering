@@ -9,7 +9,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterOwner"
-        Topmost="True"
+        Topmost="False"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="800" Width="800" 
         Background="Transparent">
@@ -20,6 +20,5 @@
             <ContentControl prism:RegionManager.RegionName="{Binding TitleBarRegion}" DockPanel.Dock="Top"/>
             <ContentControl prism:RegionManager.RegionName="{Binding ContentRegion}" />
         </DockPanel>
-      
     </Grid>
 </Window>
