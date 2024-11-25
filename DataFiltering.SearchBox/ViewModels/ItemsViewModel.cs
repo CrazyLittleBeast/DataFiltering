@@ -1,4 +1,4 @@
-﻿using DataFiltering.SearchBox.Model;
+﻿using DataFiltering.Data.Models;
 using DataFiltering.Shared.Interface;
 using System.Collections.ObjectModel;
 using System.ComponentModel;

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using DataFiltering.Shared.Interface;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,13 +14,13 @@ namespace DataFiltering.ItemManager.Controls
         public static readonly DependencyProperty ItemSourceProperty =
             DependencyProperty.Register(
             name: nameof(ItemsSource),
-            propertyType: typeof(ObservableCollection<string>),
+            propertyType: typeof(ObservableCollection<IGroceryItem>),
             ownerType: typeof(ItemListView),
-            typeMetadata: new FrameworkPropertyMetadata(default(ObservableCollection<string>), OnItemsSourceChanged));
+            typeMetadata: new FrameworkPropertyMetadata(default(ObservableCollection<IGroceryItem>), OnItemsSourceChanged));
 
-        public ObservableCollection<string> ItemsSource
+        public ObservableCollection<IGroceryItem> ItemsSource
         {
-            get => (ObservableCollection<string>)GetValue(ItemSourceProperty);
+            get => (ObservableCollection<IGroceryItem>)GetValue(ItemSourceProperty);
             set => SetValue(ItemSourceProperty, value);
         }
         public ICollectionView? ItemsCollectionView { get; private set; }
@@ -34,10 +35,10 @@ namespace DataFiltering.ItemManager.Controls
         }
         private bool FilteredItems(object obj)
         {
-            if (string.IsNullOrWhiteSpace(FilterText))
-                return true;
+            if (obj is not IGroceryItem item)
+                return false;
 
-            return obj is string str && str.ToLower().Contains(FilterText.ToLower());
+            return string.IsNullOrWhiteSpace(_filterText) || item.ProductName.Contains(FilterText, StringComparison.InvariantCultureIgnoreCase);
         }
         private static void OnItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

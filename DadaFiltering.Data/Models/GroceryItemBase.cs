@@ -1,6 +1,6 @@
 ﻿using DataFiltering.Shared.Interface;
 
-namespace DataFiltering.SearchBox.Model
+namespace DataFiltering.Data.Models
 {
     public abstract class GroceryItemBase : IGroceryItem
     {

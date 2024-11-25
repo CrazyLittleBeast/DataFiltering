@@ -9,7 +9,7 @@
     <Grid  Width="150" Height="300">
         <StackPanel Orientation="Vertical">
             <TextBox Text="{Binding FilterText,UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-            <ListBox Width="150" Height="300" ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <ListBox Width="150" Height="300" ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}" DisplayMemberPath="ProductName"/>
         </StackPanel>
     </Grid>
 </UserControl>
