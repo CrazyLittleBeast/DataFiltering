@@ -12,10 +12,10 @@ namespace DataFiltering.ItemManager.Controls
 
         public static readonly DependencyProperty ItemSourceProperty =
             DependencyProperty.Register(
-            name: nameof(ItemsSource),
-            propertyType: typeof(IEnumerable),
-            ownerType: typeof(ItemListView),
-            typeMetadata: new FrameworkPropertyMetadata(default(IEnumerable), OnItemsSourceChanged));
+                name: nameof(ItemsSource),
+                propertyType: typeof(IEnumerable),
+                ownerType: typeof(ItemListView),
+                typeMetadata: new FrameworkPropertyMetadata(default(IEnumerable), OnItemsSourceChanged));
         public static readonly DependencyProperty FilterTargetProperty =
             DependencyProperty.Register(
                 name: nameof(FilterTarget),

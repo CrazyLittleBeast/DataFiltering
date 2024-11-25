@@ -8,7 +8,10 @@ namespace DataFiltering.ViewModels
         {
             get => UIRegions.ContentRegion;
         }
-
+        public string TitleBarRegion
+        {
+            get => UIRegions.TitleBarRegion;
+        }
         public string Title
         {
             get => "Data Filtering";

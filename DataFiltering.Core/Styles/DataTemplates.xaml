@@ -19,6 +19,5 @@
                 <TextBlock  Grid.Column="1" Text="{Binding Price}" Style="{StaticResource MaterialDesignTitleLargeTextBlock}" VerticalAlignment="Center" TextAlignment="Right"/>
             </Grid>
         </materialDesign:Card>
-
     </DataTemplate>
 </ResourceDictionary>
