@@ -1,6 +1,6 @@
 ﻿
+using DataFiltering.ItemManager.Controls;
 using DataFiltering.ItemManager.ViewModels;
-using DataFiltering.ItemManager.Views;
 using DataFiltering.Shared.Constants;
 
 namespace DataFiltering.ItemManager

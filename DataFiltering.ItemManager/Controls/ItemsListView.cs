@@ -4,19 +4,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace DataFiltering.ItemManager.Views
+namespace DataFiltering.ItemManager.Controls
 {
-    /// <summary>
-    /// Interaction logic for ItemListView.xaml
-    /// </summary>
     public partial class ItemListView : UserControl
     {
         private string _filterText = string.Empty;
-
-        public ItemListView()
-        {
-            InitializeComponent();
-        }
 
         public static readonly DependencyProperty ItemSourceProperty =
             DependencyProperty.Register(
@@ -24,6 +16,7 @@ namespace DataFiltering.ItemManager.Views
             propertyType: typeof(ObservableCollection<string>),
             ownerType: typeof(ItemListView),
             typeMetadata: new FrameworkPropertyMetadata(default(ObservableCollection<string>), OnItemsSourceChanged));
+
         public ObservableCollection<string> ItemsSource
         {
             get => (ObservableCollection<string>)GetValue(ItemSourceProperty);
@@ -46,7 +39,6 @@ namespace DataFiltering.ItemManager.Views
 
             return obj is string str && str.ToLower().Contains(FilterText.ToLower());
         }
-
         private static void OnItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = (ItemListView)d;

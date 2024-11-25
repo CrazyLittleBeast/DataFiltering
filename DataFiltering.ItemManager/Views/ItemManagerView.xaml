@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="DataFiltering.ItemManager.Views.ItemManagerView"
+﻿<UserControl x:Class="DataFiltering.ItemManager.Controls.ItemManagerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DataFiltering.ItemManager.Views"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:contol ="clr-namespace:DataFiltering.ItemManager.Controls"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
@@ -12,8 +12,8 @@
         <!--<ContentControl prism:RegionManager.RegionName="{Binding ItemManagementRegion}"/>-->
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="{Binding Title}" FontSize="18" HorizontalAlignment="Center"/>
-                <local:ItemListView ItemsSource="{Binding Groceries, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
-                <Button Content="Get" Command="{Binding GetGroceriesCommand}" Width="150" Margin="10"/>
+            <contol:ItemListView ItemsSource="{Binding Groceries}"/>
+            <Button Content="Get" Command="{Binding GetGroceriesCommand}" Width="150" Margin="10"/>
             </StackPanel>
     </Grid>
 </UserControl>

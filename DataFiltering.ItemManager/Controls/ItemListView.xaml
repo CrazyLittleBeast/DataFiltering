@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="DataFiltering.ItemManager.Controls.ItemListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataFiltering.ItemManager.Controls"
+             mc:Ignorable="d" 
+             >
+    <Grid  Width="150" Height="300">
+        <StackPanel Orientation="Vertical">
+            <TextBox Text="{Binding FilterText,UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <ListBox Width="150" Height="300" ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

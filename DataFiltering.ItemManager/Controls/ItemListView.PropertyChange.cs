@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 
-namespace DataFiltering.ItemManager.Views
+namespace DataFiltering.ItemManager.Controls
 {
     public partial class ItemListView : UserControl, INotifyPropertyChanged
     {
