@@ -3,7 +3,7 @@
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <DataTemplate x:Key="GroceryItemTemplate">
-        <materialDesign:Card Width="200" Height="50" Padding="5" Background="GreenYellow">
+        <materialDesign:Card Width="235" Height="55" Padding="5" Background="GreenYellow" materialDesign:ElevationAssist.Elevation="Dp3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

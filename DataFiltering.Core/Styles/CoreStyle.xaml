@@ -6,5 +6,6 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/DataFiltering.Shared;component/Styles/DataTemplates.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/DataFiltering.Shared;component/Styles/ButtonStyles.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DataFiltering.Shared;component/Styles/ContainerStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

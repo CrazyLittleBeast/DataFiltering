@@ -21,7 +21,7 @@
     <Grid Margin="-3">
         <Border Background="{StaticResource MaterialDesign.Brush.Primary}" CornerRadius="5,5,2,2" MouseDown="Border_MouseDown"/>
         <StackPanel Orientation="Horizontal" Margin="10,0">
-            <materialDesign:PackIcon Kind="Filter" VerticalAlignment="Center" Foreground="White"/>
+            <materialDesign:PackIcon Kind="Filter" VerticalAlignment="Center" Foreground="GreenYellow" Width="18" Height="18"/>
             <TextBlock Text="Data Filtering" Style="{StaticResource MaterialDesignLabelLargeTextBlock}" VerticalAlignment="Center" Foreground="White"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

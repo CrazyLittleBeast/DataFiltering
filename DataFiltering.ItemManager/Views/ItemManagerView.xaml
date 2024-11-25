@@ -4,16 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:contol ="clr-namespace:DataFiltering.ItemManager.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
     <Grid>
-        <!--<ContentControl prism:RegionManager.RegionName="{Binding ItemManagementRegion}"/>-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+    <!--<ContentControl prism:RegionManager.RegionName="{Binding ItemManagementRegion}"/>-->
+        <materialDesign:Card Grid.Column="1" Background="DimGray" Margin="15">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="{Binding Title}" FontSize="18" HorizontalAlignment="Center"/>
                 <contol:ItemListView ItemsSource="{Binding Groceries}" FilterTarget="ProductName" Margin="10"/>
                 <Button Content="Groceries++" Command="{Binding GetGroceriesCommand}" Width="150" Margin="10"/>
             </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </UserControl>

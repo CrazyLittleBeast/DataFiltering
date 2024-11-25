@@ -8,8 +8,11 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         WindowStyle="None"
         AllowsTransparency="True"
+        WindowStartupLocation="CenterOwner"
+        Topmost="True"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="800" Width="800" Background="Transparent">
+        Title="{Binding Title}" Height="800" Width="800" 
+        Background="Transparent">
     
     <Grid>
         <Border BorderBrush="{StaticResource MaterialDesign.Brush.Primary}" Background="{StaticResource MaterialDesign.Brush.Primary.Dark}" BorderThickness="2.1" CornerRadius="5"/>

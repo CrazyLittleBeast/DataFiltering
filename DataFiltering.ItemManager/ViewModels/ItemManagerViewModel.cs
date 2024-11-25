@@ -44,9 +44,5 @@ namespace DataFiltering.ItemManager.ViewModels
         {
             get => UIRegions.ItemManagementRegion;
         }
-        public string Title
-        {
-            get => "Filtered Data";
-        }
     }
 }
