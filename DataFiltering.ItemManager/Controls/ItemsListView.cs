@@ -22,6 +22,12 @@ namespace DataFiltering.ItemManager.Controls
                 propertyType: typeof(string),
                 ownerType: typeof(ItemListView),
                 typeMetadata: new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty DispalyMemberPathProperty =
+            DependencyProperty.Register(
+                name: nameof(DisplayMemberPath),
+                propertyType: typeof(string),
+                ownerType: typeof(ItemListView),
+                typeMetadata: new PropertyMetadata(string.Empty));
 
         public IEnumerable ItemsSource
         {
@@ -34,6 +40,11 @@ namespace DataFiltering.ItemManager.Controls
             get => (string)GetValue(FilterTargetProperty);
             set => SetValue(FilterTargetProperty, value);
         }
+        public string DisplayMemberPath
+        {
+            get => (string)GetValue(DispalyMemberPathProperty);
+            set => SetValue(DispalyMemberPathProperty, value);
+        }
         public string FilterText
         {
             get => _filterText;
@@ -43,7 +54,6 @@ namespace DataFiltering.ItemManager.Controls
                     ItemsCollectionView?.Refresh();
             }
         }
-
         private bool FilteredItems(object obj)
         {
             if (obj is null || string.IsNullOrWhiteSpace(FilterTarget))
