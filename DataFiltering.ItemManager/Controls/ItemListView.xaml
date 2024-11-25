@@ -4,10 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DataFiltering.ItemManager.Controls"
-             mc:Ignorable="d">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" d:Background="White">
     
-    <StackPanel Orientation="Vertical" Width="150" Height="300" DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">
-        <TextBox Text="{Binding FilterText,UpdateSourceTrigger=PropertyChanged}"/>
-        <ListBox Width="150" Height="300" ItemsSource="{Binding ItemsSource}" DisplayMemberPath="{Binding DisplayMemberPath}"/>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/DataFiltering.Shared;component/Styles/CoreStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical" Width="300" Height="500"  DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">
+
+
+        <TextBox Text="{Binding FilterText,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="FilterMenuOutline"/>
+                    <TextBlock Text="Filter Text"/>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+
+        <ListBox Height="500"
+                 ItemsSource="{Binding ItemsSource}" 
+                 DisplayMemberPath="{Binding DisplayMemberPath}"
+                 ItemTemplate="{StaticResource GroceryItemTemplate}"
+                 VirtualizingPanel.ScrollUnit="Pixel"/>
     </StackPanel>
 </UserControl>

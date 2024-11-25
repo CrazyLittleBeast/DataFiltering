@@ -12,7 +12,7 @@
         <!--<ContentControl prism:RegionManager.RegionName="{Binding ItemManagementRegion}"/>-->
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="{Binding Title}" FontSize="18" HorizontalAlignment="Center"/>
-                <contol:ItemListView ItemsSource="{Binding Groceries}" FilterTarget="ProductName" DisplayMemberPath="ProductName" Margin="10"/>
+                <contol:ItemListView ItemsSource="{Binding Groceries}" FilterTarget="ProductName" Margin="10"/>
                 <Button Content="Groceries++" Command="{Binding GetGroceriesCommand}" Width="150" Margin="10"/>
             </StackPanel>
     </Grid>

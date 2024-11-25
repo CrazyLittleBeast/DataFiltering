@@ -3,6 +3,7 @@
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <ResourceDictionary.MergedDictionaries>
         <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Grey" SecondaryColor="Cyan" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DataFiltering.Shared;component/Styles/DataTemplates.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

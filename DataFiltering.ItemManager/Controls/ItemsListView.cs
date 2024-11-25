@@ -54,7 +54,8 @@ namespace DataFiltering.ItemManager.Controls
                     ItemsCollectionView?.Refresh();
             }
         }
-        private bool FilteredItems(object obj)
+
+        private bool FilterLogic(object obj)
         {
             if (obj is null || string.IsNullOrWhiteSpace(FilterTarget))
                 return false;
@@ -71,7 +72,7 @@ namespace DataFiltering.ItemManager.Controls
         {
             var control = (ItemListView)d;
             control.ItemsCollectionView = CollectionViewSource.GetDefaultView(control.ItemsSource);
-            control.ItemsCollectionView.Filter = control.FilteredItems;
+            control.ItemsCollectionView.Filter = control.FilterLogic;
         }
     }
 }
