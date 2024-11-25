@@ -1,5 +1,4 @@
-﻿using DataFiltering.Shared.Interface;
-using System.Collections.ObjectModel;
+﻿using System.Collections;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,16 +13,27 @@ namespace DataFiltering.ItemManager.Controls
         public static readonly DependencyProperty ItemSourceProperty =
             DependencyProperty.Register(
             name: nameof(ItemsSource),
-            propertyType: typeof(ObservableCollection<IGroceryItem>),
+            propertyType: typeof(IEnumerable),
             ownerType: typeof(ItemListView),
-            typeMetadata: new FrameworkPropertyMetadata(default(ObservableCollection<IGroceryItem>), OnItemsSourceChanged));
+            typeMetadata: new FrameworkPropertyMetadata(default(IEnumerable), OnItemsSourceChanged));
+        public static readonly DependencyProperty FilterTargetProperty =
+            DependencyProperty.Register(
+                name: nameof(FilterTarget),
+                propertyType: typeof(string),
+                ownerType: typeof(ItemListView),
+                typeMetadata: new PropertyMetadata(string.Empty));
 
-        public ObservableCollection<IGroceryItem> ItemsSource
+        public IEnumerable ItemsSource
         {
-            get => (ObservableCollection<IGroceryItem>)GetValue(ItemSourceProperty);
+            get => (IEnumerable)GetValue(ItemSourceProperty);
             set => SetValue(ItemSourceProperty, value);
         }
         public ICollectionView? ItemsCollectionView { get; private set; }
+        public string FilterTarget
+        {
+            get => (string)GetValue(FilterTargetProperty);
+            set => SetValue(FilterTargetProperty, value);
+        }
         public string FilterText
         {
             get => _filterText;
@@ -33,12 +43,19 @@ namespace DataFiltering.ItemManager.Controls
                     ItemsCollectionView?.Refresh();
             }
         }
+
         private bool FilteredItems(object obj)
         {
-            if (obj is not IGroceryItem item)
+            if (obj is null || string.IsNullOrWhiteSpace(FilterTarget))
                 return false;
 
-            return string.IsNullOrWhiteSpace(_filterText) || item.ProductName.Contains(FilterText, StringComparison.InvariantCultureIgnoreCase);
+            var property = obj.GetType().GetProperty(FilterTarget);
+
+            if (property is null || property.GetValue(obj) is not string value)
+                return false;
+
+            return string.IsNullOrWhiteSpace(FilterText) ||
+                    value.Contains(FilterText, StringComparison.InvariantCultureIgnoreCase);
         }
         private static void OnItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

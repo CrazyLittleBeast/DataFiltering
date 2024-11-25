@@ -48,6 +48,5 @@ namespace DataFiltering.ItemManager.ViewModels
         {
             get => "Filtered Data";
         }
-
     }
 }
