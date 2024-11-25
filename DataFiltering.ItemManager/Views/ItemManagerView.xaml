@@ -11,9 +11,9 @@
     <Grid>
         <!--<ContentControl prism:RegionManager.RegionName="{Binding ItemManagementRegion}"/>-->
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="{Binding Title}" FontSize="18"/>
-                <local:ItemListView ItemsSource="{Binding Groceries, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Content="Get" Command="{Binding GetGroceriesCommand}" Width="100"/>
+                <TextBlock Text="{Binding Title}" FontSize="18" HorizontalAlignment="Center"/>
+                <local:ItemListView ItemsSource="{Binding Groceries, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
+                <Button Content="Get" Command="{Binding GetGroceriesCommand}" Width="150" Margin="10"/>
             </StackPanel>
     </Grid>
 </UserControl>
