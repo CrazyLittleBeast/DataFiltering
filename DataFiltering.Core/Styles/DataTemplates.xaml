@@ -20,4 +20,15 @@
             </Grid>
         </materialDesign:Card>
     </DataTemplate>
+    
+    <DataTemplate x:Key="Blips">
+        <Border Width="10" Height="10" CornerRadius="100"
+                Margin="1" SnapsToDevicePixels="True"
+                Background="DarkSlateGray"/>
+    </DataTemplate>
+
+    <ItemsPanelTemplate x:Key="ItemPanelRows">
+        <UniformGrid Rows="5"/>
+    </ItemsPanelTemplate>
+    
 </ResourceDictionary>
