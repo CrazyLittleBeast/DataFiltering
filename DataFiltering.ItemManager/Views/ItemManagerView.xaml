@@ -8,7 +8,7 @@
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500" d:Background="Gray">
+             d:DesignHeight="750" d:DesignWidth="500" d:Background="Gray">
 
     <UserControl.Resources>
         <ResourceDictionary>
