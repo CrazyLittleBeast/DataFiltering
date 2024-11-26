@@ -14,7 +14,7 @@ namespace DataFiltering.ItemManager.ViewModels
 
         public ItemManagerViewModel()
         {
-            ImitialItemList();
+            InitialItemList();
             GetGroceriesCommand = new DelegateCommand(GetGroceries);
             AddNewItemCommand = new DelegateCommand(AddNewItem);
         }
@@ -50,13 +50,17 @@ namespace DataFiltering.ItemManager.ViewModels
 
         private void GetGroceries()
         {
-            var x = new ObservableCollection<IGroceryItem>()
+            var moreBeer = new ObservableCollection<IGroceryItem>()
             {
-                 new Beverage("Cola", 1.50m, 200, 0.33f, false),
-                 new Beverage("Whiskey", 25.00m, 30, 0.7f, true),
-                 new Beverage("Energy Drink", 2.00m, 150, 0.25f, false)
+                new Beverage("Guinness Foreign Extra Stout", 4.99m, 50, 0.33f, true),
+                new Beverage("Delirium Tremens", 5.49m, 30, 0.33f, true),
+                new Beverage("BrewDog Tokyo", 6.99m, 20, 0.33f, true),
+                new Beverage("Samichlaus Bier", 7.99m, 25, 0.33f, true),
+                new Beverage("Schneider Aventinus Weizen-Eisbock", 5.99m, 40, 0.5f, true),
+                new Beverage("Goose Island Bourbon County Stout", 14.99m, 10, 0.5f, true),
+                new Beverage("The Bruery Black Tuesday", 29.99m, 5, 0.75f, true)
             };
-            Groceries.AddRange(x);
+            Groceries.AddRange(moreBeer);
         }
         private void AddNewItem()
         {
@@ -73,12 +77,12 @@ namespace DataFiltering.ItemManager.ViewModels
             Groceries.Add(NewBeverageItem);
             NewBeverageItem = new Beverage();
         }
-        private void ImitialItemList()
+        private void InitialItemList()
         {
             Groceries = new ObservableCollection<IGroceryItem>
             {
                  new Beverage("Orange Juice", 3.50m, 50, 1.5f, false),
-                 new Beverage("Beer", 2.00m, 100, 0.5f, true),
+                 new Beverage("Red Horse", 2.00m, 100, 0.5f, true),
                  new Beverage("Wine", 10.00m, 25, 0.75f, true),
             };
         }

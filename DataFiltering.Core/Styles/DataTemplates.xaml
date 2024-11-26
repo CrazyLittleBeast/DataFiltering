@@ -3,14 +3,14 @@
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <DataTemplate x:Key="GroceryItemTemplate">
-        <materialDesign:Card Width="235" Height="55" Padding="5" Background="GreenYellow" materialDesign:ElevationAssist.Elevation="Dp3">
+        <materialDesign:Card Width="250" Height="55" Padding="5" Background="GreenYellow" materialDesign:ElevationAssist.Elevation="Dp3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Column="0">
-                    <TextBlock Text="{Binding ProductName}" Style="{StaticResource MaterialDesignTitleMediumTextBlock}"/>
+                    <TextBlock Text="{Binding ProductName}" Style="{StaticResource MaterialDesignTitleSmallTextBlock}"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="QTY: "/>
                         <TextBlock Text="{Binding StockQuantity}"/>

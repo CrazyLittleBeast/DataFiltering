@@ -25,7 +25,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     
                     <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10" Opacity="0.75">
@@ -34,7 +34,6 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="3" HorizontalAlignment="Left">
-
                         <StackPanel Orientation="Horizontal" TextBlock.FontWeight="Medium" Margin="1">
                             <TextBlock Text="Quantity: "/>
                             <TextBlock Text="{Binding SelectedGroceryItem.StockQuantity}"/>
@@ -54,7 +53,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--<ContentControl prism:RegionManager.RegionName="{Binding ItemManagementRegion}"/>-->
+         
             <materialDesign:Card Grid.Column="0" Margin="10,5" Background="DimGray">
                 <StackPanel Orientation="Vertical" Margin="10">
                     <TextBox materialDesign:HintAssist.Hint="Product Name"  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
@@ -102,7 +101,11 @@
 
             <materialDesign:Card Grid.Column="1" Background="DimGray" Margin="10,5">
                 <StackPanel Orientation="Vertical">
-                    <contol:ItemListView ItemsSource="{Binding Groceries}" SelectedItem="{Binding SelectedGroceryItem,UpdateSourceTrigger=PropertyChanged}" FilterTarget="ProductName" Margin="10"/>
+                    <contol:ItemListView ItemsSource="{Binding Groceries}" 
+                                         SelectedItem="{Binding SelectedGroceryItem,UpdateSourceTrigger=PropertyChanged}" 
+                                         ItemTemplate="{StaticResource GroceryItemTemplate}"
+                                         ItemContainerStyle="{StaticResource ContainerStyle}"
+                                         FilterTarget="ProductName" Margin="10"/>
                     <Separator/>
                     <Button Content="Groceries++" Command="{Binding GetGroceriesCommand}" Width="150" Margin="8" HorizontalAlignment="Left"/>
                 </StackPanel>

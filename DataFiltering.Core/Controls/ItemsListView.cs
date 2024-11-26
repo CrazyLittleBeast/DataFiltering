@@ -34,6 +34,18 @@ namespace DataFiltering.Shared.Controls
                 propertyType: typeof(object),
                 ownerType: typeof(ItemListView),
                 typeMetadata: new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty ItemTemplateProperty =
+            DependencyProperty.Register(
+                name: nameof(ItemTemplate),
+                propertyType: typeof(DataTemplate),
+                ownerType: typeof(ItemListView),
+                typeMetadata: new FrameworkPropertyMetadata(default(DataTemplate)));
+        public static readonly DependencyProperty ItemContainerStyleProperty =
+            DependencyProperty.Register(
+                name: nameof(ItemContainerStyle),
+                propertyType: typeof(Style),
+                ownerType: typeof(ItemListView),
+                typeMetadata: new FrameworkPropertyMetadata(default(Style)));
 
         public IEnumerable ItemsSource
         {
@@ -64,6 +76,16 @@ namespace DataFiltering.Shared.Controls
         {
             get => GetValue(SelectedItemProperty);
             set => SetValue(SelectedItemProperty, value);
+        }
+        public DataTemplate? ItemTemplate
+        {
+            get => (DataTemplate)GetValue(ItemTemplateProperty);
+            set => SetValue(ItemTemplateProperty, value);
+        }
+        public Style ItemContainerStyle
+        {
+            get => (Style)GetValue(ItemContainerStyleProperty);
+            set => SetValue(ItemContainerStyleProperty, value);
         }
 
         private bool FilterLogic(object obj)
