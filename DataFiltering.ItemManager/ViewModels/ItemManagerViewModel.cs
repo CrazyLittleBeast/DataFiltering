@@ -7,27 +7,29 @@ namespace DataFiltering.ItemManager.ViewModels
 {
     public class ItemManagerViewModel : BindableBase
     {
-        private ObservableCollection<IGroceryItem> _groceries = new ObservableCollection<IGroceryItem>();
+        private ObservableCollection<IGroceryItem> _groceries = new();
         private IGroceryItem? _selectedGroceryItem;
-
-        public DelegateCommand GetGroceriesCommand { get; private set; }
+        private Beverage? _newBeverageItem = new Beverage();
 
         public ItemManagerViewModel()
         {
-            Groceries = new ObservableCollection<IGroceryItem>
-            {
-                 new Beverage("Orange Juice", 3.50m, 50, 1.5f, false),
-                 new Beverage("Beer", 2.00m, 100, 0.5f, true),
-                 new Beverage("Wine", 10.00m, 25, 0.75f, true),
-
-            };
+            ImitialItemList();
             GetGroceriesCommand = new DelegateCommand(GetGroceries);
+            AddNewItemCommand = new DelegateCommand(AddNewItem);
         }
+
+        public DelegateCommand GetGroceriesCommand { get; private set; }
+        public DelegateCommand AddNewItemCommand { get; private set; }
 
         public IGroceryItem? SelectedGroceryItem
         {
             get => _selectedGroceryItem;
             set => SetProperty(ref _selectedGroceryItem, value);
+        }
+        public Beverage? NewBeverageItem
+        {
+            get => _newBeverageItem;
+            set => SetProperty(ref _newBeverageItem, value);
         }
 
         public ObservableCollection<IGroceryItem> Groceries
@@ -49,7 +51,23 @@ namespace DataFiltering.ItemManager.ViewModels
                  new Beverage("Energy Drink", 2.00m, 150, 0.25f, false)
             };
             Groceries.AddRange(x);
+        }
+        private void AddNewItem()
+        {
+            if (NewBeverageItem is null || Groceries.Any(i => i.ProductName.Equals(NewBeverageItem.ProductName)))
+                return;
 
+            Groceries.Add(NewBeverageItem);
+            NewBeverageItem = new Beverage();
+        }
+        private void ImitialItemList()
+        {
+            Groceries = new ObservableCollection<IGroceryItem>
+            {
+                 new Beverage("Orange Juice", 3.50m, 50, 1.5f, false),
+                 new Beverage("Beer", 2.00m, 100, 0.5f, true),
+                 new Beverage("Wine", 10.00m, 25, 0.75f, true),
+            };
         }
     }
 }

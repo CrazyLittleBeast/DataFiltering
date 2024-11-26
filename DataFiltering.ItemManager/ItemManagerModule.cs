@@ -1,7 +1,9 @@
 ﻿
 using DataFiltering.ItemManager.Controls;
+using DataFiltering.ItemManager.Models;
 using DataFiltering.ItemManager.ViewModels;
 using DataFiltering.Shared.Constants;
+using DataFiltering.Shared.Interface;
 
 namespace DataFiltering.ItemManager
 {
@@ -22,6 +24,7 @@ namespace DataFiltering.ItemManager
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             ViewModelLocationProvider.Register<ItemManagerView, ItemManagerViewModel>();
+            containerRegistry.Register<IGroceryItem, Beverage>();
         }
     }
 }

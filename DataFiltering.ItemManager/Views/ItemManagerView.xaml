@@ -55,7 +55,15 @@
             </Grid.ColumnDefinitions>
             <!--<ContentControl prism:RegionManager.RegionName="{Binding ItemManagementRegion}"/>-->
             <materialDesign:Card Grid.Column="0" Margin="10,5" Background="DimGray">
-              
+                <StackPanel Orientation="Vertical" Margin="3">
+                    <TextBox Text="{Binding NewBeverageItem.ProductName}" materialDesign:HintAssist.Hint="Product Name"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox Text="{Binding NewBeverageItem.Price}" materialDesign:HintAssist.Hint="Price"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox Text="{Binding NewBeverageItem.StockQuantity}" materialDesign:HintAssist.Hint="Stock Quantity"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox Text="{Binding NewBeverageItem.VolumeInLiters}" materialDesign:HintAssist.Hint="Volume"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <CheckBox Content="Contains Alcohol?" IsChecked="{Binding NewBeverageItem.IsAlcoholic}"/>
+
+                    <Button Content="Add Item" Command="{Binding AddNewItemCommand}" Width="100" Height="35" Margin="10"/>
+                </StackPanel>
             </materialDesign:Card>
 
             <materialDesign:Card Grid.Column="1" Background="DimGray" Margin="10,5">
