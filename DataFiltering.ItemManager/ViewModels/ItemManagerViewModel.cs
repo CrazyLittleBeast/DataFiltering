@@ -10,6 +10,7 @@ namespace DataFiltering.ItemManager.ViewModels
         private ObservableCollection<IGroceryItem> _groceries = new();
         private IGroceryItem? _selectedGroceryItem;
         private Beverage? _newBeverageItem = new Beverage();
+        private string _validationMessage = string.Empty;
 
         public ItemManagerViewModel()
         {
@@ -20,6 +21,11 @@ namespace DataFiltering.ItemManager.ViewModels
 
         public DelegateCommand GetGroceriesCommand { get; private set; }
         public DelegateCommand AddNewItemCommand { get; private set; }
+        public string ValidationMessage
+        {
+            get => _validationMessage;
+            set => SetProperty(ref _validationMessage, value);
+        }
 
         public IGroceryItem? SelectedGroceryItem
         {
@@ -54,8 +60,15 @@ namespace DataFiltering.ItemManager.ViewModels
         }
         private void AddNewItem()
         {
+            ValidationMessage = string.Empty;
             if (NewBeverageItem is null || Groceries.Any(i => i.ProductName.Equals(NewBeverageItem.ProductName)))
                 return;
+
+            if (!NewBeverageItem.IsValid(out var validationMessage))
+            {
+                ValidationMessage = validationMessage;
+                return;
+            }
 
             Groceries.Add(NewBeverageItem);
             NewBeverageItem = new Beverage();

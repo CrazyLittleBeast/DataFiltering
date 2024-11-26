@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:contol ="clr-namespace:DataFiltering.Shared.Controls;assembly=DataFiltering.Shared"
+             xmlns:validation ="clr-namespace:DataFiltering.Shared.Styles.ValidationRules;assembly=DataFiltering.Shared"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
@@ -55,14 +56,47 @@
             </Grid.ColumnDefinitions>
             <!--<ContentControl prism:RegionManager.RegionName="{Binding ItemManagementRegion}"/>-->
             <materialDesign:Card Grid.Column="0" Margin="10,5" Background="DimGray">
-                <StackPanel Orientation="Vertical" Margin="3">
-                    <TextBox Text="{Binding NewBeverageItem.ProductName}" materialDesign:HintAssist.Hint="Product Name"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                    <TextBox Text="{Binding NewBeverageItem.Price}" materialDesign:HintAssist.Hint="Price"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                    <TextBox Text="{Binding NewBeverageItem.StockQuantity}" materialDesign:HintAssist.Hint="Stock Quantity"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                    <TextBox Text="{Binding NewBeverageItem.VolumeInLiters}" materialDesign:HintAssist.Hint="Volume"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <TextBox materialDesign:HintAssist.Hint="Product Name"  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="NewBeverageItem.ProductName" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validation:ProductNameValidationRules/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Price"  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="NewBeverageItem.Price" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validation:PriceValidationRules/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Stock Quantity"  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="NewBeverageItem.StockQuantity" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validation:StockQuantityValidationRules/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Volume(L)" materialDesign:TextFieldAssist.SuffixText="L"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="NewBeverageItem.VolumeInLiters" UpdateSourceTrigger="PropertyChanged" StringFormat="n1">
+                                <Binding.ValidationRules>
+                                    <validation:ProductVolumeValidationRules/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <CheckBox Content="Contains Alcohol?" IsChecked="{Binding NewBeverageItem.IsAlcoholic}"/>
-
-                    <Button Content="Add Item" Command="{Binding AddNewItemCommand}" Width="100" Height="35" Margin="10"/>
+                    <Button Content="Add Item" Command="{Binding AddNewItemCommand}"  Width="100" Height="35" Margin="10"/>
+                    <TextBlock Text="{Binding ValidationMessage}"  TextAlignment="Center"/>
                 </StackPanel>
             </materialDesign:Card>
 
