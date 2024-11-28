@@ -1,4 +1,4 @@
-﻿namespace DataFiltering.SearchBox.Model
+﻿namespace DataFiltering.Data.Models
 {
     public class Beverage : GroceryItemBase
     {

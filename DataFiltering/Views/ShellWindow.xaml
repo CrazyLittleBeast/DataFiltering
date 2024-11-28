@@ -6,9 +6,19 @@
         xmlns:local="clr-namespace:DataFiltering.Views"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterOwner"
+        Topmost="False"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="450" Width="800">
+        Title="{Binding Title}" Height="800" Width="800" 
+        Background="Transparent">
+    
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="{Binding ContentRegion}"/>
+        <Border BorderBrush="{StaticResource MaterialDesign.Brush.Primary}" Background="{StaticResource MaterialDesign.Brush.Primary.Dark}" BorderThickness="2.1" CornerRadius="5"/>
+        <DockPanel Margin="3">
+            <ContentControl prism:RegionManager.RegionName="{Binding TitleBarRegion}" DockPanel.Dock="Top"/>
+            <ContentControl prism:RegionManager.RegionName="{Binding ContentRegion}" />
+        </DockPanel>
     </Grid>
 </Window>

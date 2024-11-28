@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace DataFiltering.SearchBox.Views
+﻿namespace DataFiltering.SearchBox.Views
 {
     /// <summary>
     /// Interaction logic for ItemsView.xaml

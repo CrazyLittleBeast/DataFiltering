@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="DataFiltering.ItemManager.Controls.ItemManagerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:contol ="clr-namespace:DataFiltering.Shared.Controls;assembly=DataFiltering.Shared"
+             xmlns:validation ="clr-namespace:DataFiltering.Shared.Styles.ValidationRules;assembly=DataFiltering.Shared"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="500" d:Background="Gray">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/DataFiltering.Shared;component/Styles/CoreStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <Grid>
+            <materialDesign:Card Height="90" Background="GreenYellow" Margin="10" materialDesign:ElevationAssist.Elevation="Dp3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10" Opacity="0.75">
+                        <TextBlock Text="{Binding SelectedGroceryItem.ProductName}" Style="{StaticResource MaterialDesignHeadlineSmallTextBlock}"/>
+                        <TextBlock Text="{Binding SelectedGroceryItem.Price}" Style="{StaticResource MaterialDesignTitleSmallTextBlock}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="3" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" TextBlock.FontWeight="Medium" Margin="1">
+                            <TextBlock Text="Quantity: "/>
+                            <TextBlock Text="{Binding SelectedGroceryItem.StockQuantity}"/>
+                        </StackPanel>
+
+                        <ItemsControl ItemsSource="{Binding SelectedGroceryItem.StockQuantity, Converter={StaticResource NumberToObjectsConvereter}}"
+                                      ItemTemplate="{StaticResource Blips}"
+                                      ItemsPanel="{StaticResource ItemPanelRows}"
+                                      VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+         
+            <materialDesign:Card Grid.Column="0" Margin="10,5" Background="DimGray">
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <TextBox materialDesign:HintAssist.Hint="Product Name"  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="NewBeverageItem.ProductName" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validation:ProductNameValidationRules/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Price"  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="NewBeverageItem.Price" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validation:PriceValidationRules/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Stock Quantity"  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="NewBeverageItem.StockQuantity" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validation:StockQuantityValidationRules/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Volume(L)" materialDesign:TextFieldAssist.SuffixText="L"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="NewBeverageItem.VolumeInLiters" UpdateSourceTrigger="PropertyChanged" StringFormat="n1">
+                                <Binding.ValidationRules>
+                                    <validation:ProductVolumeValidationRules/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <CheckBox Content="Contains Alcohol?" IsChecked="{Binding NewBeverageItem.IsAlcoholic}"/>
+                    <Button Content="Add Item" Command="{Binding AddNewItemCommand}"  Width="100" Height="35" Margin="10"/>
+                    <TextBlock Text="{Binding ValidationMessage}"  TextAlignment="Center"/>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Column="1" Background="DimGray" Margin="10,5">
+                <StackPanel Orientation="Vertical">
+                    <contol:ItemListView ItemsSource="{Binding Groceries}" 
+                                         SelectedItem="{Binding SelectedGroceryItem,UpdateSourceTrigger=PropertyChanged}" 
+                                         ItemTemplate="{StaticResource GroceryItemTemplate}"
+                                         ItemContainerStyle="{StaticResource ContainerStyle}"
+                                         FilterTarget="ProductName" Margin="10"/>
+                    <Separator/>
+                    <Button Content="Groceries++" Command="{Binding GetGroceriesCommand}" Width="150" Margin="8" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </materialDesign:Card>
+        </Grid>
+    </StackPanel>
+</UserControl>

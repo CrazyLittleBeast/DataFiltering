@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DadaFiltering.Data\DataFiltering.Data.csproj" />
     <ProjectReference Include="..\DataFiltering.Core\DataFiltering.Shared.csproj" />
   </ItemGroup>
 

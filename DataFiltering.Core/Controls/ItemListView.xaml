@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="DataFiltering.Shared.Controls.ItemListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataFiltering.Shared.Controls"
+             xmlns:validation ="clr-namespace:DataFiltering.Shared.Styles.ValidationRules"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" d:Background="White">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/DataFiltering.Shared;component/Styles/CoreStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical" Width="350" Height="550"  DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">
+
+        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Foreground="White" FontSize="15" Margin="5">
+            <TextBox.Text>
+                <Binding Path="FilterText" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:FilterTextLengthRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="FilterMenuOutline"/>
+                    <TextBlock Text="Filter Text"/>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
+        </TextBox>
+
+        <ListBox Height="500"
+                 ItemsSource="{Binding ItemsSource}" 
+                 DisplayMemberPath="{Binding DisplayMemberPath}"
+                 SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+                 ItemTemplate="{Binding ItemTemplate}"
+                 ItemContainerStyle="{Binding ItemContainerStyle}"
+                 VirtualizingPanel.ScrollUnit="Pixel"/>
+    </StackPanel>
+</UserControl>
